@@ -1,1 +1,470 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eskay Bot Panel · V5</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <div class="eskay-app">
 
+    <!-- ÜST BAR -->
+    <header class="eskay-header">
+      <div class="eskay-header-main">
+        <div class="eskay-header-title-block">
+          <div class="eskay-header-tag">ESKAY GPT</div>
+          <h1 class="eskay-header-title">Eskay Bot Panel · V5</h1>
+          <div class="eskay-header-subchips">
+            <button class="chip chip--small chip--active" data-mode-toggle="spot">Spot</button>
+            <button class="chip chip--small">Gün içi hedef</button>
+            <button class="chip chip--small">Orta / yüksek volatilite</button>
+          </div>
+        </div>
+
+        <div class="eskay-header-right">
+          <!-- Üst sekmeler: Panel / Öğrenme / Ayarlar -->
+          <nav class="eskay-top-tabs" aria-label="Ana görünüm">
+            <button class="top-tab top-tab--active" data-view-target="panel">Panel</button>
+            <button class="top-tab" data-view-target="learning">Öğrenme</button>
+            <button class="top-tab" data-view-target="settings">Ayarlar</button>
+          </nav>
+
+          <div class="eskay-header-status">
+            <span class="eskay-mode-pill" data-global-mode>MODE: YELLOW</span>
+            <span class="eskay-online-pill">
+              <span class="eskay-status-dot"></span>
+              ONLINE
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="eskay-main">
+
+      <!-- ===================================================== -->
+      <!-- PANEL GÖRÜNÜMÜ (ANA PANEL)                           -->
+      <!-- ===================================================== -->
+      <section class="eskay-view eskay-view--active" data-view="panel">
+
+        <!-- Hesap Bağlantısı -->
+        <section class="eskay-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Hesap Bağlantısı</h2>
+                <p class="card-subtitle">
+                  API anahtarı tarayıcıya kaydedilmez. Gerçek bağlantı için güvenli bir backend gerekir.
+                  Şu anda tüm sinyaller yalnızca gösterim amaçlıdır; gerçek alım–satım yapılmaz.
+                </p>
+              </div>
+              <span class="pill pill--danger" data-connection-status>Bağlı değil</span>
+            </div>
+
+            <div class="card-row chip-row">
+              <button class="chip chip--pill chip--active" data-connection-mode="sim">Mod: Simülasyon</button>
+              <button class="chip chip--pill" data-connection-mode="panel">Sadece panel</button>
+              <button class="chip chip--pill chip--success" data-connection-shield="on">Koruma Kalkanı: Aktif</button>
+            </div>
+
+            <div class="card-footer-actions">
+              <button class="btn btn--ghost" disabled>Binance hesabı ekle (yakında)</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Genel Durum -->
+        <section class="eskay-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Genel Durum</h2>
+                <p class="card-subtitle">Bugünkü risk ve performans özeti.</p>
+              </div>
+              <div class="card-header-tags">
+                <span class="pill pill--soft" data-day-mode>Dengeli Mod</span>
+                <span class="pill pill--success" data-day-mood>Pozitif gün</span>
+              </div>
+            </div>
+
+            <div class="card-grid card-grid--2">
+              <div class="stat-block">
+                <div class="stat-label">Bakiye</div>
+                <div class="stat-value" data-balance>0.00 USDT</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Günlük PnL</div>
+                <div class="stat-value stat-value--pos" data-daily-pnl>+0.0%</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Aktif saat bandı</div>
+                <div class="stat-value" data-active-session>İkincil</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Aktif slot</div>
+                <div class="stat-value" data-slot-usage>0 / 3 slot (kullanım %0)</div>
+              </div>
+            </div>
+
+            <div class="limit-bar">
+              <div class="limit-bar-header">
+                <span>Günlük limit kullanımı</span>
+                <span class="limit-bar-caption" data-limit-caption>
+                  Kullanılan ≈ %0 · Kalan ≈ %100
+                </span>
+              </div>
+              <div class="limit-bar-track">
+                <div class="limit-bar-fill" data-limit-fill style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="card-footer-grid">
+              <div class="meta-row">
+                <span data-last-trades>Son 0 işlem · 0 kâr · 0 zarar</span>
+                <span data-streak>Streak: 0W · 0 pozitif gün</span>
+              </div>
+              <div class="meta-row">
+                <span data-risk-score>Risk puanı 0 / 100 · Orta</span>
+                <span data-slot-summary>Şu an 0 / 3 slot · Kasa modu: N/A</span>
+              </div>
+            </div>
+
+            <div class="card-footer-actions">
+              <button class="chip chip--pill chip--outline" data-kill-switch-btn>Kill switch: Hazır</button>
+              <button class="chip chip--pill chip--outline" data-leverage-toggle>Kaldıraç: Kapalı</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Otomatik İşlem Modu -->
+        <section class="eskay-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Otomatik İşlem Modu</h2>
+                <p class="card-subtitle">
+                  Mod: <span data-auto-mode-label>Tam otomatik</span> · Sinyallerde senin onayın olmadan emir açılmaz.
+                </p>
+              </div>
+              <span class="pill pill--soft">Beta</span>
+            </div>
+
+            <div class="card-row chip-row">
+              <button class="chip chip--pill" data-auto-mode="semi">Yarı Otomatik</button>
+              <button class="chip chip--pill chip--active" data-auto-mode="full">Tam Otomatik</button>
+            </div>
+
+            <ul class="bullet-list">
+              <li>
+                Uygun sinyaller; <strong>Setup Motoru (S1, S2, S3)</strong> + risk kuralları + slot limitleri
+                içinde ise otomatik işleme dönüştürülür.
+              </li>
+              <li>
+                Günlük zarar limiti veya kill switch tetiklenirse yeni işlem açılmaz.
+              </li>
+              <li>
+                <strong>RED</strong> modunda yalnızca S1 ve en yüksek skorlu sinyaller kabul edilir; diğer
+                setup’lar pasifleşir.
+              </li>
+              <li>
+                <strong>YELLOW</strong> modunda orta kalite sinyaller filtrelenir, sadece yüksek güvenli girişler kalır.
+              </li>
+            </ul>
+
+            <div class="card-grid card-grid--3 card-grid--compact">
+              <div class="stat-block">
+                <div class="stat-label">Günlük limit</div>
+                <div class="stat-value" data-daily-limit>≈ %7</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Trade riski</div>
+                <div class="stat-value">max ≈ %2</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Slot limiti</div>
+                <div class="stat-value" data-slot-limit>3</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Aktif slot (otomatik)</div>
+                <div class="stat-value" data-auto-slots>0 / 3</div>
+              </div>
+            </div>
+
+            <div class="card-footer-actions card-footer-actions--center">
+              <button class="btn btn--primary" data-auto-start-btn>
+                Tam otomatik alım–satımı başlat
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Zaman Dilimi -->
+        <section class="eskay-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Zaman Dilimi</h2>
+                <p class="card-subtitle">Zaman bandına göre risk, slot ve sinyal eşiği.</p>
+              </div>
+              <span class="pill pill--soft" data-time-engine>Saat motoru: İkincil</span>
+            </div>
+
+            <div class="card-row chip-row">
+              <button class="chip chip--pill" data-timeframe="1m">1Dk</button>
+              <button class="chip chip--pill" data-timeframe="5m">5Dk</button>
+              <button class="chip chip--pill chip--active" data-timeframe="15m">15Dk</button>
+              <button class="chip chip--pill" data-timeframe="1h">1S</button>
+              <button class="chip chip--pill" data-timeframe="2h">2S</button>
+              <button class="chip chip--pill" data-timeframe="4h">4S</button>
+              <button class="chip chip--pill" data-timeframe="6h">6S</button>
+              <button class="chip chip--pill" data-timeframe="1d">1G</button>
+            </div>
+
+            <p class="card-paragraph">
+              Öncelikli saat bantları: <strong>06–10, 16–20, 20–00</strong>. Bu saatlerde sinyal eşiği ve slot
+              önceliği yukarı çekilir.
+            </p>
+            <p class="card-paragraph">
+              Diğer saatlerde fırsatlar değerlendirilir; ancak skor çarpanı düşürülür ve sistem daha seçici davranır.
+            </p>
+
+            <div class="card-grid card-grid--3 card-grid--compact">
+              <div class="stat-block">
+                <div class="stat-label">İşlem başına risk</div>
+                <div class="stat-value" data-risk-per-trade>≈ %1.0</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Sinyal eşiği</div>
+                <div class="stat-value" data-signal-threshold>80 / 100</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Score çarpanı</div>
+                <div class="stat-value" data-score-multiplier>0.8×</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Global Piyasa Filtresi -->
+        <section class="eskay-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Global Piyasa Filtresi</h2>
+                <p class="card-subtitle">
+                  BTC, ETH, SOL ve USDT dominansına göre global risk modu.
+                </p>
+              </div>
+              <span class="pill pill--warning" data-global-filter-label>YELLOW · Nötr / temkinli</span>
+            </div>
+
+            <div class="card-grid card-grid--2 card-grid--stacked">
+              <div class="stat-block">
+                <div class="stat-label">BTC trend skoru</div>
+                <div class="stat-value" data-btc-score>62</div>
+                <div class="stat-caption" data-btc-price>BTC/USDT: 95.000,0</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">ETH trend skoru</div>
+                <div class="stat-value" data-eth-score>58</div>
+                <div class="stat-caption" data-eth-price>ETH/USDT: 3.150,0</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">SOL trend skoru</div>
+                <div class="stat-value" data-sol-score>65</div>
+                <div class="stat-caption" data-sol-price>SOL/USDT: 135,7</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">USDT dominans</div>
+                <div class="stat-value" data-usdt-dom>54</div>
+                <div class="stat-caption" data-usdt-desc>Nötr / coin-friendly değil</div>
+              </div>
+            </div>
+
+            <div class="risk-bar">
+              <div class="risk-bar-track">
+                <div class="risk-bar-fill" data-risk-bar style="width: 45%"></div>
+              </div>
+              <div class="risk-bar-caption">
+                Global risk modu YELLOW · Piyasa karışık. Sistem seçici davranır, orta kalite sinyaller elenir.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Setup Motoru -->
+        <section class="eskay-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Setup Motoru · S1 / S2 / S3</h2>
+                <p class="card-subtitle">
+                  Her setup için PASS / WAIT / FAIL durumu ve son sebep.
+                </p>
+              </div>
+            </div>
+
+            <div class="setup-list">
+              <article class="setup-item">
+                <div class="setup-main">
+                  <h3 class="setup-title">S1 – Dump Recovery</h3>
+                  <p class="setup-desc" data-s1-note>
+                    Dump sonrası double-wick dip + OB toparlanması.
+                  </p>
+                </div>
+                <span class="setup-status setup-status--pass" data-s1-status>PASS</span>
+              </article>
+
+              <article class="setup-item">
+                <div class="setup-main">
+                  <h3 class="setup-title">S2 – Trend Pullback</h3>
+                  <p class="setup-desc" data-s2-note>
+                    HL bölgesinde retest; volatilitenin normalleşmesi bekleniyor.
+                  </p>
+                </div>
+                <span class="setup-status setup-status--wait" data-s2-status>WAIT</span>
+              </article>
+
+              <article class="setup-item">
+                <div class="setup-main">
+                  <h3 class="setup-title">S3 – Breakout Retest</h3>
+                  <p class="setup-desc" data-s3-note>
+                    Hacim zayıf; breakout teyidi yetersiz.
+                  </p>
+                </div>
+                <span class="setup-status setup-status--fail" data-s3-status>FAIL</span>
+              </article>
+            </div>
+
+            <p class="card-paragraph">
+              Dump ortamında S1’e, güçlü trendlerde S2’ye, range kırılımlarında S3’e ağırlık verilir.
+            </p>
+          </div>
+        </section>
+
+        <!-- Bugünkü coin listen -->
+        <section class="eskay-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Bugünkü coin listen</h2>
+                <p class="card-subtitle">
+                  Öğrenme modu, son işlemler ve risk profiline göre seçilen ana adaylar.
+                </p>
+              </div>
+              <span class="pill pill--soft">Öğrenme modu verisiyle</span>
+            </div>
+
+            <div class="coin-list" data-today-coins>
+              <!-- JS ile doldurulacak; şu an örnekler: -->
+              <article class="coin-item">
+                <header class="coin-header">
+                  <div>
+                    <h3 class="coin-title">AVAX / USDT</h3>
+                    <div class="coin-subtitle">36.8 USDT</div>
+                  </div>
+                  <div class="coin-tags">
+                    <span class="pill pill--xs">Risk: C</span>
+                    <span class="pill pill--xs">Volatilite: Yüksek</span>
+                    <span class="pill pill--xs">Trend</span>
+                    <span class="pill pill--xs">Momentum</span>
+                  </div>
+                </header>
+                <p class="coin-text">
+                  Setup: S2 – Trend Pullback · EMA20 üzerinde, HL teyitli.
+                  Öğrenme skoru: Orta · Son 10 işlemde başarı: %64 · Ortalama kâr: %3.4 · Maks takip kârı: ≈ %10
+                </p>
+                <div class="coin-actions">
+                  <button class="btn btn--ghost">Analiz</button>
+                  <button class="btn btn--primary">İşlem hazırla</button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Filtreye göre öneriler -->
+        <section class="eskay-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Filtreye göre öneriler</h2>
+                <p class="card-subtitle">
+                  Saat bandı, risk modu ve ekosistem filtresinden geçen; ancak setup skoru ana listeye göre
+                  daha düşük olan alternatifler.
+                </p>
+              </div>
+              <button class="link-button" data-suggestions-toggle>Önerileri gizle</button>
+            </div>
+
+            <div class="coin-list" data-suggestions-panel>
+              <article class="coin-item">
+                <header class="coin-header">
+                  <div>
+                    <h3 class="coin-title">OP / USDT</h3>
+                    <div class="coin-subtitle">3.15 USDT</div>
+                  </div>
+                  <div class="coin-change coin-change--pos">+2.10%</div>
+                </header>
+                <p class="coin-text">
+                  S3 – Breakout denemesi, hacim orta, likidite yeterli (daha agresif).
+                </p>
+                <div class="coin-actions">
+                  <button class="btn btn--ghost">Analiz</button>
+                  <button class="btn btn--primary">İşlem hazırla</button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Açık işlemler -->
+        <section class="eskay-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Açık işlemler</h2>
+                <p class="card-subtitle">Aktif pozisyonlar ve anlık PnL.</p>
+              </div>
+            </div>
+            <div class="open-trades" data-open-trades>
+              <p class="card-paragraph">Şu anda açık işlem yok.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Kâr / Zarar Performansı -->
+        <section class="eskay-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Kâr / Zarar Performansı</h2>
+                <p class="card-subtitle">
+                  Gerçekleşen + açık pozisyon PnL özeti.
+                </p>
+              </div>
+              <div class="card-header-tags">
+                <button class="chip chip--pill chip--active" data-pnl-range="day">Gün</button>
+                <button class="chip chip--pill" data-pnl-range="week">Hafta</button>
+                <button class="chip chip--pill" data-pnl-range="month">Ay</button>
+              </div>
+            </div>
+
+            <div class="card-grid card-grid--2 card-grid--stacked">
+              <div class="stat-block">
+                <div class="stat-label">Toplam PnL</div>
+                <div class="stat-value stat-value--pos" data-total-pnl>+0.0%</div>
+                <div class="stat-caption" data-total-trades>0 işlem</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Ortalama R / R</div>
+                <div class="stat-value" data-avg-rr>0.0 R</div>
+                <div class="stat-caption" data-max-dd>Max DD: 0.0%</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Gerçekleşen PnL</div>
+                <div class="stat-value stat-value--pos" data-realized-pnl>+0.0% · +0 USDT</div>
+              </div>
+              <div class="stat-block">
+                <div class="stat-label">Açık pozisyon PnL</div>
+                <div class
